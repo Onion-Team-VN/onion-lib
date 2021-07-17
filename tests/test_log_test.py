@@ -1,4 +1,4 @@
-from onion_lib.decorator.decortor_log_test import log_test, reset_cache
+from onion_lib.decorator import log_test, reset_cache
 import unittest
 
 NUM_TEST_CASE = 2
