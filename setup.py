@@ -12,6 +12,7 @@ setup(
     install_requires=required_packages,
     python_requires='>3.6.0',
     package_data={
+        '': ['dataset/*/*.csv']
     },
 
     entry_points={
