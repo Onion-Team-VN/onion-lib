@@ -28,7 +28,7 @@ def log_test(num_test_case):
                     "pass": False
                 })
             if len(LOG_RESULTS) == num_test_case:
-                print(LOG_RESULTS)
+                print(f"<TEST>{LOG_RESULTS}</TEST>")
 
         return wrapper
 
