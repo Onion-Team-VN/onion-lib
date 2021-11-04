@@ -1,5 +1,8 @@
 from functools import wraps
 from typing import Dict
+import matplotlib.pyplot as plt
+import io
+import base64
 
 LOG_RESULTS = []
 
@@ -33,3 +36,26 @@ def log_test(num_test_case):
         return wrapper
 
     return _log_test
+
+
+def show_figure(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        output = f(*args, **kwargs)
+
+        # Add image streamer
+        io_bytes = io.BytesIO()
+        plt.savefig(io_bytes, format='jpg')
+        io_bytes.seek(0)
+        fig1_encode = base64.b64encode(io_bytes.read()).decode('utf-8')
+        if output is not None:
+            output.update({
+                "image": fig1_encode
+            })
+        else:
+            output = {
+                "image": fig1_encode
+            }
+        return output
+
+    return wrapper
